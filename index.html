@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Назва й опис формують пошуковий снипет та прев'ю сторінки в соцмережах. -->
+	<meta name="description" content="ТурПрокат — спорядження для походу та простий розрахунок вартості оренди.">
+	<meta property="og:locale" content="uk_UA">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="ТурПрокат — оренда туристичного спорядження">
+	<meta property="og:description" content="Підберіть спорядження під маршрут, сезон і склад групи та розрахуйте вартість оренди.">
+	<title>ТурПрокат — оренда туристичного спорядження</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body class="page-shell">
+	<!-- Landmarks допомагають допоміжним технологіям розпізнавати області сторінки. -->
+	<header class="sticky top-0 z-50 border-b border-black/10 bg-[#f8f8f3]">
+		<div class="mx-auto flex max-w-6xl items-center justify-between gap-5 px-5 py-3">
+			<a class="shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#top" aria-label="ТурПрокат — на головну">
+				<img src="assets/images/logo.png" alt="" class="block h-auto w-[160px] max-w-full object-contain">
+			</a>
+
+			<nav class="hidden items-center gap-6 md:ml-auto md:flex" aria-label="Головна навігація">
+				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#calculator">Калькулятор</a>
+				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#benefits">Переваги</a>
+				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#steps">Як це працює</a>
+				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#reviews">Відгуки</a>
+			</nav>
+
+			<a class="hidden min-h-11 items-center justify-center gap-2 rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315747] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31] md:inline-flex" href="#calculator">Розрахувати оренду</a>
+
+			<details class="relative md:hidden">
+				<summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md text-[#203c31] transition-colors hover:bg-[#e8ece7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" aria-label="Відкрити меню">
+					<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</summary>
+				<nav class="absolute right-0 top-full z-30 mt-2 block min-w-56 rounded-md border border-black/10 bg-white p-2 shadow-lg" aria-label="Мобільна навігація">
+					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#calculator">Калькулятор</a>
+					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#benefits">Переваги</a>
+					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#steps">Як це працює</a>
+					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#reviews">Відгуки</a>
+					<a class="mt-2 block rounded-md bg-[#203c31] px-3 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#315747] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#calculator">Розрахувати оренду</a>
+				</nav>
+			</details>
+	</header>
+
+	<main class="main-content" id="top">
+		<!-- Один h1 задає тему сторінки; h2 позначають розділи, h3 — вкладені картки й блоки. -->
+			<section class="hero-section" aria-labelledby="page-title">
+				<div class="content-container hero-grid">
+					<div class="hero-copy">
+						<div class="eyebrow">Для новачків, соло-мандрівників і груп</div>
+						<h1 id="page-title">Оренда туристичного спорядження: розрахунок за 2 хвилини</h1>
+						<p class="hero-description">Оберіть склад групи, тривалість і сезон — калькулятор порахує підсумкову ціну й складе персональний чек-лист спорядження. Без дзвінків і листування.</p>
+						<div class="hero-actions">
+							<a class="button button-primary" href="#calculator">Розрахувати оренду</a>
+							<a class="button button-outline" href="#calculator">Підібрати спорядження</a>
+						</div>
+					</div>
+					<div class="hero-visual">
+						<img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=2000&q=85" alt="Табір із наметами під зоряним небом">
+					</div>
+				</div>
+			</section>
+
+			<section class="calculator-section section-pad" id="calculator" aria-labelledby="calculator-title">
+				<div class="content-container">
+					<div class="section-heading heading-row">
+						<div>
+							<div class="eyebrow">Планування без клопоту</div>
+							<h2 id="calculator-title">Що беремо в похід?</h2>
+						</div>
+						<p>Кілька деталей — і ми зберемо персональний список спорядження та порахуємо оренду.</p>
+					</div>
+
+					<div class="calculator-layout">
+						<div class="calculator-form-panel">
+							<div class="panel-topline"><span>Ваш маршрут</span></div>
+							<div class="form-grid">
+								<div class="field-group">
+									<label for="group-size">Скільки вас?</label>
+									<div class="input-wrap"><input id="group-size" type="number" min="1" value="2"><span class="input-suffix">людини</span></div>
+								</div>
+								<div class="field-group">
+									<label for="trip-length">Тривалість походу</label>
+									<div class="input-wrap"><input id="trip-length" type="number" min="1" value="3"><span class="input-suffix">дні</span></div>
+								</div>
+								<fieldset class="field-group field-full season-field">
+									<legend class="field-label">Сезон подорожі</legend>
+									<div class="season-options">
+										<label class="season-option"><input type="radio" name="season" value="spring"><span aria-hidden="true">🌱</span>Весна</label>
+										<label class="season-option is-selected"><input type="radio" name="season" value="summer" checked><span aria-hidden="true">☀</span>Літо</label>
+										<label class="season-option"><input type="radio" name="season" value="autumn"><span aria-hidden="true">🍂</span>Осінь</label>
+										<label class="season-option"><input type="radio" name="season" value="winter"><span aria-hidden="true">❄</span>Зима</label>
+									</div>
+								</fieldset>
+								<div class="field-group field-full">
+									<label for="trip-type">Формат походу</label>
+									<select id="trip-type">
+										<option>Піший похід з ночівлею</option>
+										<option>Одноденний маршрут</option>
+										<option>Кемпінг на природі</option>
+									</select>
+								</div>
+							</div>
+							<p class="form-footnote">Розрахунок попередній — склад набору можна змінити.</p>
+						</div>
+
+						<aside class="checklist-panel" aria-labelledby="checklist-title">
+							<div class="checklist-heading"><div><span class="eyebrow">Попередній набір</span><h3 id="checklist-title">Ваш список</h3></div><span class="item-count" aria-live="polite">6 речей</span></div>
+							<ul class="equipment-list">
+								<li class="equipment-item">
+									<input id="equipment-tent" type="checkbox" checked data-unit-price="250" data-quantity="tent">
+									<span class="equipment-icon" aria-hidden="true">⌂</span>
+									<label for="equipment-tent"><strong>Намет двомісний</strong><small>1 шт. · на групу</small></label>
+									<span class="equipment-price">₴ 750</span>
+								</li>
+								<li class="equipment-item">
+									<input id="equipment-sleeping-bag" type="checkbox" checked data-unit-price="180" data-quantity="person">
+									<span class="equipment-icon" aria-hidden="true">◒</span>
+									<label for="equipment-sleeping-bag"><strong>Спальний мішок</strong><small>2 шт. · на групу</small></label>
+									<span class="equipment-price">₴ 1 080</span>
+								</li>
+								<li class="equipment-item">
+									<input id="equipment-mat" type="checkbox" checked data-unit-price="90" data-quantity="person">
+									<span class="equipment-icon" aria-hidden="true">▤</span>
+									<label for="equipment-mat"><strong>Туристичний килимок</strong><small>2 шт. · на групу</small></label>
+									<span class="equipment-price">₴ 540</span>
+								</li>
+								<li class="equipment-item">
+									<input id="equipment-stove" type="checkbox" checked data-unit-price="160" data-quantity="group">
+									<span class="equipment-icon" aria-hidden="true">♨</span>
+									<label for="equipment-stove"><strong>Пальник + казанок</strong><small>1 комплект · на групу</small></label>
+									<span class="equipment-price">₴ 480</span>
+								</li>
+							</ul>
+							<div class="price-summary"><span>Орієнтовна вартість <small data-duration aria-live="polite">за 3 дні оренди</small></span><strong aria-live="polite">₴ 2 850</strong></div>
+							<a class="button button-dark reserve-button" href="#consultation">Забронювати набір <span aria-hidden="true">↗</span></a>
+							<p class="availability-note"><span></span> Спорядження доступне на обрані дати</p>
+						</aside>
+					</div>
+				</div>
+			</section>
+			<script>
+				(() => {
+					const calculator = document.querySelector("#calculator");
+					const groupInput = calculator.querySelector("#group-size");
+					const daysInput = calculator.querySelector("#trip-length");
+					const items = [...calculator.querySelectorAll(".equipment-item")];
+					const itemCount = calculator.querySelector(".item-count");
+					const duration = calculator.querySelector("[data-duration]");
+					const total = calculator.querySelector(".price-summary strong");
+					const formatter = new Intl.NumberFormat("uk-UA");
+
+					const getQuantity = (type, groupSize) => {
+						if (type === "person") return groupSize;
+						if (type === "tent") return Math.ceil(groupSize / 2);
+						return 1;
+					};
+
+					const pluralize = (value, forms) => {
+						const lastTwo = value % 100;
+						const last = value % 10;
+						if (lastTwo >= 11 && lastTwo <= 14) return forms[2];
+						if (last === 1) return forms[0];
+						if (last >= 2 && last <= 4) return forms[1];
+						return forms[2];
+					};
+
+					const updateChecklist = () => {
+						const groupSize = Math.ceil(groupInput.valueAsNumber);
+						const days = Math.ceil(daysInput.valueAsNumber);
+						if (!Number.isFinite(groupSize) || groupSize < 1 || !Number.isFinite(days) || days < 1) return;
+
+						let selectedCount = 0;
+						let priceTotal = 0;
+
+						items.forEach((item) => {
+							const checkbox = item.querySelector('input[type="checkbox"]');
+							const quantityText = item.querySelector("label small");
+							const price = item.querySelector(".equipment-price");
+							const quantity = getQuantity(checkbox.dataset.quantity, groupSize);
+							const itemPrice = Number(checkbox.dataset.unitPrice) * quantity * days;
+
+							quantityText.textContent = checkbox.dataset.quantity === "group"
+								? `${quantity} комплект · на групу`
+								: `${quantity} шт. · на групу`;
+							price.textContent = checkbox.checked ? `₴ ${formatter.format(itemPrice)}` : "—";
+
+							if (checkbox.checked) {
+								selectedCount += quantity;
+								priceTotal += itemPrice;
+							}
+						});
+
+						itemCount.textContent = `${selectedCount} ${pluralize(selectedCount, ["річ", "речі", "речей"])}`;
+						duration.textContent = `за ${days} ${pluralize(days, ["день", "дні", "днів"])} оренди`;
+						total.textContent = `₴ ${formatter.format(priceTotal)}`;
+					};
+
+					calculator.querySelectorAll("#group-size, #trip-length, .equipment-item input").forEach((input) => {
+						input.addEventListener("input", updateChecklist);
+						input.addEventListener("change", updateChecklist);
+					});
+					updateChecklist();
+				})();
+			</script>
+
+			<section class="bg-[#f8f8f3] px-5 py-16" aria-labelledby="featured-equipment-title">
+				<div class="mx-auto max-w-6xl">
+					<div class="mb-8 text-center">
+						<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Вибір мандрівників</p>
+						<h2 id="featured-equipment-title" class="text-3xl font-bold text-[#20372e]">Популярне спорядження</h2>
+					</div>
+					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80" alt="Туристичний намет серед дерев">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для кемпінгу</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Намет двомісний</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Легкий намет із захистом від дощу та вітру для ночівель на маршруті.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Місткість</dt><dd class="mt-1 font-semibold text-[#20372e]">2 людини</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 250/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1622560481156-01fc7e1693e6?auto=format&fit=crop&w=800&q=80" alt="Туристичний рюкзак">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для тривалих маршрутів</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Рюкзак 45 л</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Зручна спинка й регульовані лямки допоможуть рівномірно розподілити вагу.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Об'єм</dt><dd class="mt-1 font-semibold text-[#20372e]">45 літрів</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 200/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1558477280-1bfed08ea5db?auto=format&fit=crop&w=800&q=80" alt="Синій спальний мішок">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для прохолодних ночей</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Спальний мішок</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Компактний спальник для комфортного відпочинку після активного дня.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Температура комфорту</dt><dd class="mt-1 font-semibold text-[#20372e]">від +5 °C</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 180/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1558477280-1bfed08ea5db?auto=format&fit=crop&w=800&h=800&crop=bottom&q=80" alt="Туристичний килимок під спальним мішком">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Легкий і компактний</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Килимок туристичний</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Ізоляційний килимок для зручного сну в наметі та відпочинку на привалі.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Тип</dt><dd class="mt-1 font-semibold text-[#20372e]">Самонадувний</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 90/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1522041350204-22285237eeca?auto=format&fit=crop&w=800&q=80" alt="Похідний пальник із посудом">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для приготування їжі</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Пальник і казанок</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Компактний набір для гарячої їжі та напоїв у поході.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Комплект</dt><dd class="mt-1 font-semibold text-[#20372e]">Пальник + казанок</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 160/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1632411316785-33d395035a3c?auto=format&fit=crop&w=800&q=80" alt="Трекінгові палиці у траві">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для гірських стежок</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Трекінгові палиці</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Допомагають тримати рівновагу та зменшують навантаження на коліна.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Кількість</dt><dd class="mt-1 font-semibold text-[#20372e]">Пара</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 110/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1683383277379-644816d886e2?auto=format&fit=crop&w=800&q=80" alt="Термос для походу">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для води в дорозі</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Термос для походу</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Зберігає напої гарячими або прохолодними під час маршруту.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Об'єм</dt><dd class="mt-1 font-semibold text-[#20372e]">0,75 л</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 70/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1575987116913-e96e7d490b8a?auto=format&fit=crop&w=800&q=80" alt="Пара туристичних черевиків">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для складних стежок</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Трекінгові черевики</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Зручне взуття з надійною підошвою для впевненого кроку на маршруті.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Доступні розміри</dt><dd class="mt-1 font-semibold text-[#20372e]">36–46</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 150/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1517457773273-412ec74a18cd?auto=format&fit=crop&w=800&q=80" alt="Налобний ліхтар">
+							<div class="flex flex-1 flex-col items-start p-5">
+								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для вечірніх стоянок</span>
+								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Ліхтар налобний</h3>
+								<p class="mb-5 text-sm leading-6 text-[#737c73]">Звільняє руки й освітлює дорогу після заходу сонця.</p>
+								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Живлення</dt><dd class="mt-1 font-semibold text-[#20372e]">USB</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 60/день</dd></div></dl>
+								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="benefits-section section-pad" id="benefits" aria-labelledby="benefits-title">
+				<div class="content-container">
+					<div class="section-heading centered-heading">
+						<div class="eyebrow">Оренда без сюрпризів</div>
+						<h2 id="benefits-title">Чому ТурПрокат?</h2>
+						<p>Продумали кожну деталь, щоб ви зосередилися на маршруті, а не на клопотах зі спорядженням.</p>
+					</div>
+					<div class="benefits-grid">
+						<article class="benefit-card"><div class="card-number" aria-hidden="true">01</div><div class="benefit-icon icon-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.5-2.9 8-7 10-4.1-2-7-5.5-7-10V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Спорядження, якому можна довіряти</h3><p>Перед кожною мандрівкою ми чистимо й ретельно перевіряємо спорядження: намети, спальники та інвентар. Ви отримуєте все справним, підготовленим і готовим до свого маршруту.</p><a href="#calculator" class="card-link" aria-label="Дізнатися про спорядження">↗</a></article>
+						<article class="benefit-card benefit-featured"><div class="card-number" aria-hidden="true">02</div><div class="benefit-icon icon-orange" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m14.8 9.2-2 4.6-4.6 2 2-4.6 4.6-2Z"/></svg></div><h3>Комплект саме для вашої мандрівки</h3><p>Вкажіть тривалість походу, розмір групи та сезон — калькулятор допоможе зібрати потрібний набір і відразу покаже орієнтовну вартість. Без зайвих речей і непередбачених витрат.</p><a href="#calculator" class="card-link" aria-label="Перейти до калькулятора">↗</a></article>
+						<article class="benefit-card"><div class="card-number" aria-hidden="true">03</div><div class="benefit-icon icon-yellow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><path d="M4 12H3a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v-6H4Zm16 0h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v-6h1Z"/><path d="M19 18a7 7 0 0 1-7 4h-1"/></svg></div><h3>Підтримка до старту й у дорозі</h3><p>Не впевнені, що взяти або як користуватися спорядженням? Пояснимо, допоможемо підібрати речі під маршрут і поділимося порадами, щоб підготовка до походу була спокійною.</p><a href="#consultation" class="card-link" aria-label="Отримати консультацію">↗</a></article>
+					</div>
+				</div>
+			</section>
+
+			<section class="steps-section section-pad" id="steps" aria-labelledby="steps-title">
+				<div class="content-container steps-layout">
+					<div class="steps-intro">
+						<div class="eyebrow">Чотири прості кроки</div>
+						<h2 id="steps-title">Від ідеї до маршруту — легко.</h2>
+						<p>Ви плануєте пригоду, ми допомагаємо з усім іншим.</p>
+						<a class="text-link" href="#calculator">Почати збиратись <span aria-hidden="true">↗</span></a>
+					</div>
+					<ol class="steps-list">
+						<li class="step-item"><span class="step-marker" aria-hidden="true">01</span><div><h3>Розкажіть про похід</h3><p>Вкажіть кількість людей, тривалість і сезон.</p></div><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg></span></li>
+						<li class="step-item"><span class="step-marker" aria-hidden="true">02</span><div><h3>Перегляньте набір</h3><p>Отримайте список потрібного спорядження та ціну.</p></div><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5h11M8 10h11M8 15h7"/><path d="m3 5 1 1 2-2M3 10l1 1 2-2M3 15l1 1 2-2"/></svg></span></li>
+						<li class="step-item"><span class="step-marker" aria-hidden="true">03</span><div><h3>Забронюйте онлайн</h3><p>Залиште заявку — ми підтвердимо наявність.</p></div><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg></span></li>
+						<li class="step-item"><span class="step-marker" aria-hidden="true">04</span><div><h3>Заберіть і вирушайте</h3><p>Отримайте чисте спорядження та насолоджуйтеся дорогою.</p></div><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17.5 5.5 14l4.3-1.1 3.4-5.8a2 2 0 0 1 3.4 2l-2 4.3 4.5 1.1a2 2 0 0 1 1.5 1.9v1.1H3Z"/><path d="M7 17.5v2M17 17.5v2"/></svg></span></li>
+					</ol>
+				</div>
+			</section>
+
+			<section class="video-feature section-pad" aria-labelledby="video-feature-title">
+				<div class="content-container">
+					<div class="section-heading centered-heading">
+						<div class="eyebrow">Не знаєте, з чого почати збори</div>
+						<h2 id="video-feature-title">Короткі поради з упаковки рюкзака допоможуть підготуватися до першого маршруту.</h2>
+					</div>
+					<figure class="video-embed">
+						<div class="video-frame">
+							<iframe
+								src="https://www.youtube.com/embed/9i2itFEPGbg?rel=0"
+								title="Коротке відео про походи та активний відпочинок"
+								loading="lazy"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen
+								referrerpolicy="strict-origin-when-cross-origin">
+							</iframe>
+						</div>
+					</figure>
+				</div>
+			</section>
+
+			<section class="reviews-section section-pad" id="reviews" aria-labelledby="reviews-title">
+				<div class="content-container">
+					<div class="section-heading heading-row">
+						<div><div class="eyebrow">Історії з маршрутів</div><h2 id="reviews-title">Що кажуть після походу</h2></div>
+					</div>
+					<div class="reviews-grid">
+						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Зібралися в Карпати за два дні. Калькулятор підказав усе потрібне, а намет виявився легшим, ніж я очікувала.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Ірина Коваль</strong><small>Похід на Петрос · серпень 2025</small></span></div></article>
+						<article class="review-card review-card-accent"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Нічого не довелося докуповувати. Все чисте, справне, а команда пояснила, як правильно встановити пальник.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Максим Левченко</strong><small>Похід Свидовцем · липень 2025</small></span></div></article>
+						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Дуже зручно для першого походу: не треба купувати спорядження навмання. Повернемося перед наступним маршрутом.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Наталя Савчук</strong><small>Вікенд у Ґорґанах · червень 2025</small></span></div></article>
+						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Їздили з дітьми на кілька днів. Нам допомогли підібрати зручний набір для всієї родини, а видача й повернення пройшли швидко.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Олена Петренко</strong><small>Сімейний похід · вересень 2025</small></span></div></article>
+						<article class="review-card review-card-accent"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Брав рюкзак і палиці на соло-маршрут. Спорядження було в гарному стані, а поради команди допомогли зібратися без зайвого.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Андрій Данилюк</strong><small>Маршрут Чорногорою · серпень 2025</small></span></div></article>
+						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Зручно, що вартість видно заздалегідь. Забронювали комплект онлайн, забрали вчасно й одразу вирушили в дорогу.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Тарас Мельник</strong><small>Похід вихідного дня · жовтень 2025</small></span></div></article>
+					</div>
+				</div>
+			</section>
+
+			<section class="consultation-section" id="consultation" aria-labelledby="consultation-title">
+				<div class="content-container consultation-layout">
+					<div class="consultation-copy"><div class="eyebrow eyebrow-light">Консультація</div><h2 id="consultation-title">Не знаєте, що брати? Підберемо разом</h2><p>Опишіть маршрут, склад групи й дати — відповімо з готовим списком спорядження та порахуємо вартість. Безкоштовно й ні до чого не зобов'язує.</p></div>
+					<div class="consultation-form-panel">
+						<form action="#" method="get">
+							<div class="field-group"><label for="contact-name">Ім'я *</label><input id="contact-name" name="name" type="text" placeholder="Введіть ім'я" required></div>
+							<div class="field-group"><label for="contact-method">Email або телефон *</label><input id="contact-method" name="contact" type="text" placeholder="Пошта або номер телефону" required></div>
+							<div class="field-group"><label for="contact-question">Питання *</label><textarea id="contact-question" name="question" rows="4" placeholder="Куди їдете, скількох вас, на скільки днів" required></textarea></div>
+							<button class="button button-primary contact-submit" type="submit">Отримати консультацію</button>
+							<p class="privacy-note">Не телефонуємо без запиту: відповідаємо там, де вам зручно.</p>
+						</form>
+
+						<figure class="contact-map-card" aria-labelledby="contact-map-title">
+							<figcaption id="contact-map-title" class="sr-only">Мапа розташування офісу ТурПрокат</figcaption>
+							<div class="contact-map-frame">
+								<iframe
+									src="https://www.google.com/maps?q=Львів%2C%20Україна&z=12&output=embed"
+									title="Мапа розташування офісу ТурПрокат у Львові"
+									loading="lazy"
+									allowfullscreen
+									referrerpolicy="strict-origin-when-cross-origin"
+									allow="fullscreen">
+								</iframe>
+							</div>
+						</figure>
+					</div>
+				</div>
+			</section>
+	</main>
+
+	<footer class="border-t border-[#e5e7df] bg-[#f2f3ed] text-[#20372e]">
+		<div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 py-12 md:grid-cols-2 lg:grid-cols-4">
+			<div>
+				<a class="inline-flex rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#top" aria-label="ТурПрокат — на головну">
+					<img src="assets/images/logo.png" alt="" class="h-auto w-40 object-contain">
+				</a>
+				<p class="mt-4 max-w-xs text-sm leading-6 text-[#59665d]">Оренда туристичного спорядження для ваших маршрутів. Збирайтеся в похід без зайвих покупок і клопоту.</p>
+			</div>
+
+			<nav aria-label="Додаткова навігація">
+				<h2 class="mb-4 text-sm font-bold text-[#20372e]">Навігація</h2>
+				<ul class="space-y-3">
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#calculator">Калькулятор</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#benefits">Переваги</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#steps">Як це працює</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#reviews">Відгуки</a></li>
+				</ul>
+			</nav>
+
+			<nav aria-label="Послуги та корисні посилання">
+				<h2 class="mb-4 text-sm font-bold text-[#20372e]">Послуги</h2>
+				<ul class="space-y-3">
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#featured-equipment-title">Популярне спорядження</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#calculator">Підбір комплекту</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#consultation">Консультація</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#steps">Підготовка до походу</a></li>
+				</ul>
+			</nav>
+
+			<div>
+				<h2 class="mb-4 text-sm font-bold text-[#20372e]">Контакти</h2>
+				<ul class="space-y-3">
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="tel:+380671234567">+38 (067) 123 45 67</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="mailto:hello@turprokat.ua">hello@turprokat.ua</a></li>
+				</ul>
+				<p class="mt-4 text-xs leading-5 text-[#59665d]">Пишіть або телефонуйте — допоможемо спланувати оренду.</p>
+			</div>
+		</div>
+
+		<div class="border-t border-[#dfe3da]">
+			<div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-4 text-xs text-[#59665d] sm:flex-row sm:items-center sm:justify-between">
+				<p>© 2026 ТурПрокат. Усі права захищені.</p>
+				<a class="w-fit transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#top">На початок сторінки ↑</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
