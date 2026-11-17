@@ -26,6 +26,7 @@
 
 			<nav class="hidden items-center gap-6 md:ml-auto md:flex" aria-label="Головна навігація">
 				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#calculator">Калькулятор</a>
+				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#routes">Маршрути</a>
 				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#benefits">Переваги</a>
 				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#steps">Як це працює</a>
 				<a class="text-sm text-[#26352e] transition-colors hover:text-[#315f48] hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#reviews">Відгуки</a>
@@ -41,6 +42,7 @@
 				</summary>
 				<nav class="absolute right-0 top-full z-30 mt-2 block min-w-56 rounded-md border border-black/10 bg-white p-2 shadow-lg" aria-label="Мобільна навігація">
 					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#calculator">Калькулятор</a>
+					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#routes">Маршрути</a>
 					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#benefits">Переваги</a>
 					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#steps">Як це працює</a>
 					<a class="block rounded px-3 py-2 text-sm text-[#26352e] hover:bg-[#f1f3ef] hover:underline focus-visible:outline-2 focus-visible:outline-[#203c31]" href="#reviews">Відгуки</a>
@@ -112,34 +114,10 @@
 						</div>
 
 						<aside class="checklist-panel" aria-labelledby="checklist-title">
-							<div class="checklist-heading"><div><span class="eyebrow">Попередній набір</span><h3 id="checklist-title">Ваш список</h3></div><span class="item-count" aria-live="polite">6 речей</span></div>
-							<ul class="equipment-list">
-								<li class="equipment-item">
-									<input id="equipment-tent" type="checkbox" checked data-unit-price="250" data-quantity="tent">
-									<span class="equipment-icon" aria-hidden="true">⌂</span>
-									<label for="equipment-tent"><strong>Намет двомісний</strong><small>1 шт. · на групу</small></label>
-									<span class="equipment-price">₴ 750</span>
-								</li>
-								<li class="equipment-item">
-									<input id="equipment-sleeping-bag" type="checkbox" checked data-unit-price="180" data-quantity="person">
-									<span class="equipment-icon" aria-hidden="true">◒</span>
-									<label for="equipment-sleeping-bag"><strong>Спальний мішок</strong><small>2 шт. · на групу</small></label>
-									<span class="equipment-price">₴ 1 080</span>
-								</li>
-								<li class="equipment-item">
-									<input id="equipment-mat" type="checkbox" checked data-unit-price="90" data-quantity="person">
-									<span class="equipment-icon" aria-hidden="true">▤</span>
-									<label for="equipment-mat"><strong>Туристичний килимок</strong><small>2 шт. · на групу</small></label>
-									<span class="equipment-price">₴ 540</span>
-								</li>
-								<li class="equipment-item">
-									<input id="equipment-stove" type="checkbox" checked data-unit-price="160" data-quantity="group">
-									<span class="equipment-icon" aria-hidden="true">♨</span>
-									<label for="equipment-stove"><strong>Пальник + казанок</strong><small>1 комплект · на групу</small></label>
-									<span class="equipment-price">₴ 480</span>
-								</li>
-							</ul>
-							<div class="price-summary"><span>Орієнтовна вартість <small data-duration aria-live="polite">за 3 дні оренди</small></span><strong aria-live="polite">₴ 2 850</strong></div>
+							<div class="checklist-heading"><div><span class="eyebrow">Попередній набір</span><h3 id="checklist-title">Ваш список</h3></div><span class="item-count" aria-live="polite">0 речей</span></div>
+							<ul class="equipment-list"></ul>
+							<p class="equipment-empty" id="equipment-empty">Список порожній. Додайте спорядження з популярного списку.</p>
+							<div class="price-summary"><span>Орієнтовна вартість <small data-duration aria-live="polite">за 3 дні оренди</small></span><strong aria-live="polite">₴ 0</strong></div>
 							<a class="button button-dark reserve-button" href="#consultation">Забронювати набір <span aria-hidden="true">↗</span></a>
 							<p class="availability-note"><span></span> Спорядження доступне на обрані дати</p>
 						</aside>
@@ -147,11 +125,12 @@
 				</div>
 			</section>
 			<script>
-				(() => {
+				document.addEventListener("DOMContentLoaded", () => {
 					const calculator = document.querySelector("#calculator");
 					const groupInput = calculator.querySelector("#group-size");
 					const daysInput = calculator.querySelector("#trip-length");
-					const items = [...calculator.querySelectorAll(".equipment-item")];
+					const equipmentList = calculator.querySelector(".equipment-list");
+					const productCards = document.querySelectorAll("[data-equipment-key]");
 					const itemCount = calculator.querySelector(".item-count");
 					const duration = calculator.querySelector("[data-duration]");
 					const total = calculator.querySelector(".price-summary strong");
@@ -172,6 +151,58 @@
 						return forms[2];
 					};
 
+					const updateProductButtons = () => {
+						productCards.forEach((card) => {
+							const checkbox = equipmentList.querySelector(`#equipment-${card.dataset.equipmentKey}`);
+							const button = card.querySelector(".equipment-add-button");
+							const isAdded = checkbox?.checked ?? false;
+							button.textContent = isAdded ? "У списку" : "Додати до списку";
+							button.disabled = isAdded;
+
+							document.querySelectorAll(`[data-add-equipment="${card.dataset.equipmentKey}"]`).forEach((recommendationButton) => {
+								recommendationButton.textContent = isAdded ? "У списку" : "Додати";
+								recommendationButton.disabled = isAdded;
+							});
+						});
+					};
+
+					const addEquipmentItem = (card) => {
+						const key = card.dataset.equipmentKey;
+						let checkbox = equipmentList.querySelector(`#equipment-${key}`);
+
+						if (checkbox) {
+							checkbox.checked = true;
+						} else {
+							const name = card.querySelector("h3").textContent.trim();
+							const item = document.createElement("li");
+							const icon = document.createElement("span");
+							const label = document.createElement("label");
+							const itemName = document.createElement("strong");
+							const quantityText = document.createElement("small");
+							const price = document.createElement("span");
+
+							item.className = "equipment-item";
+							checkbox = document.createElement("input");
+							checkbox.type = "checkbox";
+							checkbox.id = `equipment-${key}`;
+							checkbox.checked = true;
+							checkbox.dataset.unitPrice = card.dataset.unitPrice;
+							checkbox.dataset.quantity = card.dataset.quantity;
+							icon.className = "equipment-icon";
+							icon.setAttribute("aria-hidden", "true");
+							icon.textContent = card.dataset.icon;
+							label.htmlFor = checkbox.id;
+							itemName.textContent = name;
+							price.className = "equipment-price";
+
+							label.append(itemName, quantityText);
+							item.append(checkbox, icon, label, price);
+							equipmentList.append(item);
+						}
+
+						updateChecklist();
+					};
+
 					const updateChecklist = () => {
 						const groupSize = Math.ceil(groupInput.valueAsNumber);
 						const days = Math.ceil(daysInput.valueAsNumber);
@@ -180,7 +211,8 @@
 						let selectedCount = 0;
 						let priceTotal = 0;
 
-						items.forEach((item) => {
+						const equipmentItems = equipmentList.querySelectorAll(".equipment-item");
+						equipmentItems.forEach((item) => {
 							const checkbox = item.querySelector('input[type="checkbox"]');
 							const quantityText = item.querySelector("label small");
 							const price = item.querySelector(".equipment-price");
@@ -201,14 +233,65 @@
 						itemCount.textContent = `${selectedCount} ${pluralize(selectedCount, ["річ", "речі", "речей"])}`;
 						duration.textContent = `за ${days} ${pluralize(days, ["день", "дні", "днів"])} оренди`;
 						total.textContent = `₴ ${formatter.format(priceTotal)}`;
+						calculator.querySelector("#equipment-empty").hidden = equipmentItems.length > 0;
+						updateProductButtons();
 					};
 
-					calculator.querySelectorAll("#group-size, #trip-length, .equipment-item input").forEach((input) => {
+					productCards.forEach((card) => {
+						const button = document.createElement("button");
+						button.className = "equipment-add-button mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]";
+						button.type = "button";
+						button.textContent = "Додати до списку";
+						button.addEventListener("click", () => addEquipmentItem(card));
+						card.querySelector(".mt-auto").replaceWith(button);
+					});
+
+					document.querySelectorAll(".route-card[data-recommendations]").forEach((route) => {
+						const toggle = route.querySelector(".route-recommend-button");
+						const panel = route.querySelector(".route-recommendations");
+						const list = panel.querySelector("ul");
+
+						route.dataset.recommendations.split(",").forEach((key) => {
+							const product = [...productCards].find((card) => card.dataset.equipmentKey === key);
+							if (!product) throw new Error(`Unknown equipment recommendation: ${key}`);
+
+							const item = document.createElement("li");
+							const details = document.createElement("span");
+							const name = document.createElement("strong");
+							const price = document.createElement("small");
+							const addButton = document.createElement("button");
+							const unitPrice = Number(product.dataset.unitPrice);
+
+							item.className = "route-recommendation-item";
+							name.textContent = product.querySelector("h3").textContent.trim();
+							price.textContent = `₴ ${formatter.format(unitPrice)} / день`;
+							addButton.className = "recommendation-add-button";
+							addButton.type = "button";
+							addButton.dataset.addEquipment = key;
+							addButton.textContent = "Додати";
+							addButton.addEventListener("click", () => addEquipmentItem(product));
+							details.append(name, price);
+							item.append(details, addButton);
+							list.append(item);
+						});
+
+						toggle.addEventListener("click", () => {
+							const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+							toggle.setAttribute("aria-expanded", String(!isExpanded));
+							toggle.textContent = isExpanded ? "Підібрати спорядження" : "Сховати рекомендації";
+							panel.hidden = isExpanded;
+						});
+					});
+
+					calculator.querySelectorAll("#group-size, #trip-length").forEach((input) => {
 						input.addEventListener("input", updateChecklist);
 						input.addEventListener("change", updateChecklist);
 					});
+					equipmentList.addEventListener("change", (event) => {
+						if (event.target.matches('input[type="checkbox"]')) updateChecklist();
+					});
 					updateChecklist();
-				})();
+				});
 			</script>
 
 			<section class="bg-[#f8f8f3] px-5 py-16" aria-labelledby="featured-equipment-title">
@@ -218,7 +301,7 @@
 						<h2 id="featured-equipment-title" class="text-3xl font-bold text-[#20372e]">Популярне спорядження</h2>
 					</div>
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="tent" data-unit-price="250" data-quantity="tent" data-icon="⌂" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80" alt="Туристичний намет серед дерев">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для кемпінгу</span>
@@ -228,7 +311,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="backpack" data-unit-price="200" data-quantity="person" data-icon="🎒" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1622560481156-01fc7e1693e6?auto=format&fit=crop&w=800&q=80" alt="Туристичний рюкзак">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для тривалих маршрутів</span>
@@ -238,7 +321,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="sleeping-bag" data-unit-price="180" data-quantity="person" data-icon="◒" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1558477280-1bfed08ea5db?auto=format&fit=crop&w=800&q=80" alt="Синій спальний мішок">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для прохолодних ночей</span>
@@ -248,7 +331,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="mat" data-unit-price="90" data-quantity="person" data-icon="▤" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1558477280-1bfed08ea5db?auto=format&fit=crop&w=800&h=800&crop=bottom&q=80" alt="Туристичний килимок під спальним мішком">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Легкий і компактний</span>
@@ -258,7 +341,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="stove" data-unit-price="160" data-quantity="group" data-icon="♨" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1522041350204-22285237eeca?auto=format&fit=crop&w=800&q=80" alt="Похідний пальник із посудом">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для приготування їжі</span>
@@ -268,7 +351,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="trekking-poles" data-unit-price="110" data-quantity="person" data-icon="♧" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1632411316785-33d395035a3c?auto=format&fit=crop&w=800&q=80" alt="Трекінгові палиці у траві">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для гірських стежок</span>
@@ -278,7 +361,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="thermos" data-unit-price="70" data-quantity="group" data-icon="♨" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1683383277379-644816d886e2?auto=format&fit=crop&w=800&q=80" alt="Термос для походу">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для води в дорозі</span>
@@ -288,7 +371,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="boots" data-unit-price="150" data-quantity="person" data-icon="◢" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1575987116913-e96e7d490b8a?auto=format&fit=crop&w=800&q=80" alt="Пара туристичних черевиків">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для складних стежок</span>
@@ -298,7 +381,7 @@
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
 							</div>
 						</article>
-						<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
+						<article data-equipment-key="headlamp" data-unit-price="60" data-quantity="person" data-icon="☼" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
 							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1517457773273-412ec74a18cd?auto=format&fit=crop&w=800&q=80" alt="Налобний ліхтар">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Для вечірніх стоянок</span>
@@ -306,6 +389,90 @@
 								<p class="mb-5 text-sm leading-6 text-[#737c73]">Звільняє руки й освітлює дорогу після заходу сонця.</p>
 								<dl class="mb-5 grid w-full grid-cols-2 gap-3 border-y border-[#e5e7df] py-3 text-sm"><div><dt class="text-xs text-[#737c73]">Живлення</dt><dd class="mt-1 font-semibold text-[#20372e]">USB</dd></div><div><dt class="text-xs text-[#737c73]">Оренда від</dt><dd class="mt-1 font-semibold text-[#20372e]">₴ 60/день</dd></div></dl>
 								<a class="mt-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" href="#calculator">Дізнатися більше</a>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="bg-[#eef1e9] px-5 py-16" id="routes" aria-labelledby="routes-title">
+				<div class="mx-auto max-w-6xl">
+					<div class="mb-8 text-center">
+						<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Ідеї для мандрівки</p>
+						<h2 id="routes-title" class="text-3xl font-bold text-[#20372e]">Популярні маршрути Карпатами</h2>
+						<p class="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#59665d]">Оберіть маршрут, а спорядження для нього зберіть у калькуляторі.</p>
+					</div>
+					<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="tent,sleeping-bag,mat,stove,headlamp,trekking-poles">
+							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірський хребет у Карпатах" loading="lazy">
+							<div class="p-6">
+								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для досвідчених мандрівників</p>
+								<h3 class="text-xl font-bold text-[#20372e]">Чорногірський хребет: Піп Іван — Говерла</h3>
+								<dl class="mt-4 grid grid-cols-3 gap-3 border-y border-[#e5e7df] py-4 text-sm">
+									<div><dt class="text-xs text-[#737c73]">Дистанція</dt><dd class="mt-1 font-semibold text-[#20372e]">~20 км</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Тривалість</dt><dd class="mt-1 font-semibold text-[#20372e]">2 дні</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Складність</dt><dd class="mt-1 font-semibold text-[#20372e]">Висока</dd></div>
+								</dl>
+								<p class="mt-4 text-sm leading-6 text-[#59665d]">Високогірний маршрут із панорамами Чорногори, ночівлею в наметі та підйомом на найвищі вершини України.</p>
+								<button class="route-recommend-button mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" type="button" aria-expanded="false">Підібрати спорядження</button>
+								<div class="route-recommendations" hidden>
+									<h4>Рекомендоване спорядження</h4>
+									<ul></ul>
+								</div>
+							</div>
+						</article>
+						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="backpack,boots,thermos,headlamp">
+							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірське озеро серед лісу" loading="lazy">
+							<div class="p-6">
+								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для спокійного вікенду</p>
+								<h3 class="text-xl font-bold text-[#20372e]">Озеро Синевир і лісові стежки</h3>
+								<dl class="mt-4 grid grid-cols-3 gap-3 border-y border-[#e5e7df] py-4 text-sm">
+									<div><dt class="text-xs text-[#737c73]">Дистанція</dt><dd class="mt-1 font-semibold text-[#20372e]">~8 км</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Тривалість</dt><dd class="mt-1 font-semibold text-[#20372e]">1 день</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Складність</dt><dd class="mt-1 font-semibold text-[#20372e]">Легка</dd></div>
+								</dl>
+								<p class="mt-4 text-sm leading-6 text-[#59665d]">Прогулянка навколо високогірного озера та сусідніми лісовими стежками — гарний варіант для першого походу.</p>
+								<button class="route-recommend-button mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" type="button" aria-expanded="false">Підібрати спорядження</button>
+								<div class="route-recommendations" hidden>
+									<h4>Рекомендоване спорядження</h4>
+									<ul></ul>
+								</div>
+							</div>
+						</article>
+						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="backpack,boots,trekking-poles,thermos,headlamp">
+							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірська стежка на полонині Боржава" loading="lazy">
+							<div class="p-6">
+								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для активного дня в горах</p>
+								<h3 class="text-xl font-bold text-[#20372e]">Боржава: Пилипець — гора Гимба</h3>
+								<dl class="mt-4 grid grid-cols-3 gap-3 border-y border-[#e5e7df] py-4 text-sm">
+									<div><dt class="text-xs text-[#737c73]">Дистанція</dt><dd class="mt-1 font-semibold text-[#20372e]">~12 км</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Тривалість</dt><dd class="mt-1 font-semibold text-[#20372e]">1 день</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Складність</dt><dd class="mt-1 font-semibold text-[#20372e]">Середня</dd></div>
+								</dl>
+								<p class="mt-4 text-sm leading-6 text-[#59665d]">Підйом із Пилипця на відкриті полонини Боржави та вершину Гимба з краєвидами на гірські хребти.</p>
+								<button class="route-recommend-button mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" type="button" aria-expanded="false">Підібрати спорядження</button>
+								<div class="route-recommendations" hidden>
+									<h4>Рекомендоване спорядження</h4>
+									<ul></ul>
+								</div>
+							</div>
+						</article>
+						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="backpack,tent,sleeping-bag,mat,stove,boots,headlamp">
+							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гори та долина біля маршруту на Петрос" loading="lazy">
+							<div class="p-6">
+								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для досвідчених мандрівників</p>
+								<h3 class="text-xl font-bold text-[#20372e]">Петрос із Козьмещика</h3>
+								<dl class="mt-4 grid grid-cols-3 gap-3 border-y border-[#e5e7df] py-4 text-sm">
+									<div><dt class="text-xs text-[#737c73]">Дистанція</dt><dd class="mt-1 font-semibold text-[#20372e]">~18 км</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Тривалість</dt><dd class="mt-1 font-semibold text-[#20372e]">1–2 дні</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Складність</dt><dd class="mt-1 font-semibold text-[#20372e]">Висока</dd></div>
+								</dl>
+								<p class="mt-4 text-sm leading-6 text-[#59665d]">Підйом на вершину Петрос лісовими стежками та крутішими відкритими схилами. Для ночівлі в горах знадобиться повний комплект спорядження.</p>
+								<button class="route-recommend-button mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" type="button" aria-expanded="false">Підібрати спорядження</button>
+								<div class="route-recommendations" hidden>
+									<h4>Рекомендоване спорядження</h4>
+									<ul></ul>
+								</div>
 							</div>
 						</article>
 					</div>
@@ -383,16 +550,38 @@
 
 			<section class="consultation-section" id="consultation" aria-labelledby="consultation-title">
 				<div class="content-container consultation-layout">
-					<div class="consultation-copy"><div class="eyebrow eyebrow-light">Консультація</div><h2 id="consultation-title">Не знаєте, що брати? Підберемо разом</h2><p>Опишіть маршрут, склад групи й дати — відповімо з готовим списком спорядження та порахуємо вартість. Безкоштовно й ні до чого не зобов'язує.</p></div>
+					<div class="consultation-copy"><div class="eyebrow eyebrow-light">Зворотний зв'язок</div><h2 id="consultation-title">Є запитання? Напишіть нам</h2><p>Залиште повідомлення — допоможемо підібрати спорядження та спланувати оренду.</p></div>
 					<div class="consultation-form-panel">
-						<form action="#" method="get">
-							<div class="field-group"><label for="contact-name">Ім'я *</label><input id="contact-name" name="name" type="text" placeholder="Введіть ім'я" required></div>
-							<div class="field-group"><label for="contact-method">Email або телефон *</label><input id="contact-method" name="contact" type="text" placeholder="Пошта або номер телефону" required></div>
-							<div class="field-group"><label for="contact-question">Питання *</label><textarea id="contact-question" name="question" rows="4" placeholder="Куди їдете, скількох вас, на скільки днів" required></textarea></div>
-							<button class="button button-primary contact-submit" type="submit">Отримати консультацію</button>
-							<p class="privacy-note">Не телефонуємо без запиту: відповідаємо там, де вам зручно.</p>
+						<form action="#" method="get" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+							<div class="field-group">
+								<label for="contact-name">Ім’я</label>
+								<input id="contact-name" name="name" type="text" autocomplete="name" aria-describedby="contact-name-error" required>
+								<p id="contact-name-error" class="form-error" role="alert" hidden>Будь ласка, введіть ім’я.</p>
+							</div>
+							<div class="field-group">
+								<label for="contact-email">Емейл</label>
+								<input id="contact-email" name="email" type="email" autocomplete="email" aria-describedby="contact-email-error" required>
+								<p id="contact-email-error" class="form-error" role="alert" hidden>Введіть коректну адресу емейлу.</p>
+							</div>
+							<div class="field-group field-full">
+								<label for="contact-phone">Телефон</label>
+								<input id="contact-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="\+380[0-9]{9}" minlength="13" maxlength="13" title="Введіть номер у форматі +380XXXXXXXXX без пробілів." aria-describedby="contact-phone-error" required>
+								<p id="contact-phone-error" class="form-error" role="alert" hidden>Введіть номер у форматі +380XXXXXXXXX без пробілів.</p>
+							</div>
+							<div class="field-group field-full">
+								<label for="contact-message">Повідомлення</label>
+								<textarea id="contact-message" name="message" rows="4" aria-describedby="contact-message-error" required></textarea>
+								<p id="contact-message-error" class="form-error" role="alert" hidden>Будь ласка, введіть повідомлення.</p>
+							</div>
+							<div class="field-group field-full checkbox-field">
+								<label for="privacy-consent">
+									<input id="privacy-consent" name="privacy_consent" type="checkbox" aria-describedby="privacy-consent-error" required>
+									<span>Погоджуюся з політикою конфіденційності</span>
+								</label>
+								<p id="privacy-consent-error" class="form-error" role="alert" hidden>Потрібно надати згоду на обробку даних.</p>
+							</div>
+							<button class="button button-primary contact-submit sm:col-span-2" type="submit">Надіслати</button>
 						</form>
-
 						<figure class="contact-map-card" aria-labelledby="contact-map-title">
 							<figcaption id="contact-map-title" class="sr-only">Мапа розташування офісу ТурПрокат</figcaption>
 							<div class="contact-map-frame">
@@ -408,7 +597,71 @@
 						</figure>
 					</div>
 				</div>
+				<dialog id="contact-success-dialog" aria-labelledby="contact-success-title" aria-describedby="contact-success-description" class="fixed inset-0 m-auto w-[calc(100%-2rem)] max-w-md rounded-2xl border border-[#e5e7df] bg-white p-0 text-[#20372e] shadow-2xl">
+					<div class="p-6 text-center sm:p-8">
+						<div class="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-[#e8f1e8] text-2xl text-[#315f48]" aria-hidden="true">✓</div>
+						<h2 id="contact-success-title" class="mb-2 text-2xl font-bold">Повідомлення надіслано!</h2>
+						<p id="contact-success-description" class="mb-6 text-sm leading-6 text-[#59665d]">Дякуємо за звернення. Ми зв’яжемося з вами найближчим часом.</p>
+						<button id="close-success-dialog" class="inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" type="button" autofocus>Закрити</button>
+					</div>
+				</dialog>
 			</section>
+			<script>
+				(() => {
+					const form = document.querySelector(".consultation-form-panel form");
+					const phone = form.querySelector("#contact-phone");
+					const phoneError = form.querySelector("#contact-phone-error");
+					const successDialog = document.querySelector("#contact-success-dialog");
+					const closeDialogButton = successDialog.querySelector("#close-success-dialog");
+					const submitButton = form.querySelector('[type="submit"]');
+
+					phone.addEventListener("focus", () => {
+						if (!phone.value) {
+							phone.value = "+380";
+							phone.setSelectionRange(phone.value.length, phone.value.length);
+						}
+					});
+
+					phone.addEventListener("invalid", () => {
+						phoneError.hidden = false;
+						phone.setAttribute("aria-invalid", "true");
+						phoneError.textContent = phone.validity.valueMissing
+							? "Введіть номер телефону."
+							: "Перевірте формат: +380 і рівно 9 цифр без пробілів.";
+					});
+
+					phone.addEventListener("input", () => {
+						if (phoneError.hidden) return;
+						const isValid = phone.validity.valid;
+						phoneError.hidden = isValid;
+						if (isValid) {
+							phone.removeAttribute("aria-invalid");
+						} else {
+							phone.setAttribute("aria-invalid", "true");
+							phoneError.textContent = "Перевірте формат: +380 і рівно 9 цифр без пробілів.";
+						}
+					});
+
+					form.addEventListener("submit", (event) => {
+						event.preventDefault();
+						if (!form.reportValidity()) return;
+
+						form.reset();
+						phoneError.hidden = true;
+						phone.removeAttribute("aria-invalid");
+						successDialog.showModal();
+					});
+
+					closeDialogButton.addEventListener("click", () => successDialog.close());
+					successDialog.addEventListener("close", () => submitButton.focus());
+					document.addEventListener("keydown", (event) => {
+						if (event.key === "Escape" && successDialog.open) {
+							event.preventDefault();
+							successDialog.close();
+						}
+					}, true);
+				})();
+			</script>
 	</main>
 
 	<footer class="border-t border-[#e5e7df] bg-[#f2f3ed] text-[#20372e]">
@@ -424,6 +677,7 @@
 				<h2 class="mb-4 text-sm font-bold text-[#20372e]">Навігація</h2>
 				<ul class="space-y-3">
 					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#calculator">Калькулятор</a></li>
+					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#routes">Маршрути</a></li>
 					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#benefits">Переваги</a></li>
 					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#steps">Як це працює</a></li>
 					<li><a class="text-sm text-[#59665d] transition-colors hover:text-[#203c31] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#203c31]" href="#reviews">Відгуки</a></li>
