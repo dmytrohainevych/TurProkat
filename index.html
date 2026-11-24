@@ -10,6 +10,11 @@
 	<meta property="og:title" content="ТурПрокат — оренда туристичного спорядження">
 	<meta property="og:description" content="Підберіть спорядження під маршрут, сезон і склад групи та розрахуйте вартість оренди.">
 	<title>ТурПрокат — оренда туристичного спорядження</title>
+	<link rel="icon" type="image/png" href="assets/images/favicon.png?v=4">
+	<link rel="shortcut icon" type="image/png" href="assets/images/favicon.png?v=4">
+	<link rel="apple-touch-icon" href="assets/images/favicon.png?v=4">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +62,7 @@
 				<div class="content-container hero-grid">
 					<div class="hero-copy">
 						<div class="eyebrow">Для новачків, груп і соло-мандрівників</div>
-						<h1 id="page-title">Оренда туристичного спорядження: розрахунок за 2 хвилини</h1>
+						<h1 id="page-title"><span id="typed-text">Оренда туристичного спорядження</span></h1>
 						<p class="hero-description">Оберіть склад групи, тривалість і сезон — калькулятор порахує підсумкову ціну й складе персональний чек-лист спорядження. Без дзвінків і листування.</p>
 						<div class="hero-actions">
 							<a class="button button-primary" href="#calculator">Розрахувати оренду</a>
@@ -201,6 +206,10 @@
 						}
 
 						updateChecklist();
+						calculator.scrollIntoView({
+							behavior: "smooth",
+							block: "start"
+						});
 					};
 
 					const updateChecklist = () => {
@@ -290,6 +299,53 @@
 					equipmentList.addEventListener("change", (event) => {
 						if (event.target.matches('input[type="checkbox"]')) updateChecklist();
 					});
+
+					calculator.querySelector(".reserve-button").addEventListener("click", (event) => {
+						event.preventDefault();
+
+						const selectedItems = [...equipmentList.querySelectorAll(".equipment-item")]
+							.map((item) => {
+								const checkbox = item.querySelector('input[type="checkbox"]');
+								if (!checkbox.checked) return null;
+
+								const name = item.querySelector("label strong").textContent.trim();
+								const quantity = item.querySelector("label small").textContent.trim();
+								const price = item.querySelector(".equipment-price").textContent.trim();
+								return `- ${name} — ${quantity} — ${price}`;
+							})
+							.filter(Boolean);
+
+						const groupSize = groupInput.value.trim();
+						const days = daysInput.value.trim();
+						const seasonNames = {
+							spring: "Весна",
+							summer: "Літо",
+							autumn: "Осінь",
+							winter: "Зима"
+						};
+						const season = seasonNames[calculator.querySelector('input[name="season"]:checked').value];
+						const tripType = calculator.querySelector("#trip-type").value;
+						const totalPrice = total.textContent.trim();
+						const message = document.querySelector("#contact-message");
+
+						message.value = [
+							"Хочу забронювати набір спорядження:",
+							"",
+							`Кількість учасників: ${groupSize}`,
+							`Тривалість: ${days} дн.`,
+							`Сезон: ${season}`,
+							`Формат походу: ${tripType}`,
+							"",
+							"Склад набору:",
+							...(selectedItems.length ? selectedItems : ["- Набір не обрано"]),
+							"",
+							`Орієнтовна вартість: ${totalPrice}`
+						].join("\n");
+
+						const consultation = document.querySelector("#consultation");
+						consultation.scrollIntoView({ behavior: "smooth", block: "start" });
+						window.setTimeout(() => message.focus({ preventScroll: true }), 500);
+					});
 					updateChecklist();
 				});
 			</script>
@@ -332,7 +388,7 @@
 							</div>
 						</article>
 						<article data-equipment-key="mat" data-unit-price="90" data-quantity="person" data-icon="▤" class="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e5e7df] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#315f48]">
-							<img class="aspect-[4/3] w-full object-cover" src="https://images.unsplash.com/photo-1558477280-1bfed08ea5db?auto=format&fit=crop&w=800&h=800&crop=bottom&q=80" alt="Туристичний килимок під спальним мішком">
+							<img class="aspect-[4/3] w-full object-cover" src="assets/images/tourist-mat.png?v=5" alt="Надувні туристичні килимки різного кольору">
 							<div class="flex flex-1 flex-col items-start p-5">
 								<span class="mb-3 rounded-full bg-[#eef1e9] px-3 py-1 text-xs font-semibold text-[#315f48]">Легкий і компактний</span>
 								<h3 class="mb-2 text-xl font-bold text-[#20372e]">Килимок туристичний</h3>
@@ -402,9 +458,11 @@
 						<h2 id="routes-title" class="text-3xl font-bold text-[#20372e]">Популярні маршрути Карпатами</h2>
 						<p class="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#59665d]">Оберіть маршрут, а спорядження для нього зберіть у калькуляторі.</p>
 					</div>
-					<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+					<div class="route-gallery grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="tent,sleeping-bag,mat,stove,headlamp,trekking-poles">
-							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірський хребет у Карпатах" loading="lazy">
+							<a data-fancybox="routes" data-caption="Чорногірський хребет: Піп Іван — Говерла" href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1800&amp;q=90" aria-label="Збільшити фото маршруту Чорногірський хребет">
+								<img class="aspect-[16/9] w-full object-cover transition duration-300 hover:scale-[1.03]" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірський хребет у Карпатах" loading="lazy">
+							</a>
 							<div class="p-6">
 								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для досвідчених мандрівників</p>
 								<h3 class="text-xl font-bold text-[#20372e]">Чорногірський хребет: Піп Іван — Говерла</h3>
@@ -422,7 +480,9 @@
 							</div>
 						</article>
 						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="backpack,boots,thermos,headlamp">
-							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірське озеро серед лісу" loading="lazy">
+							<a data-fancybox="routes" data-caption="Озеро Синевир і лісові стежки" href="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1800&amp;q=90" aria-label="Збільшити фото маршруту Озеро Синевир">
+								<img class="aspect-[16/9] w-full object-cover transition duration-300 hover:scale-[1.03]" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірське озеро серед лісу" loading="lazy">
+							</a>
 							<div class="p-6">
 								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для спокійного вікенду</p>
 								<h3 class="text-xl font-bold text-[#20372e]">Озеро Синевир і лісові стежки</h3>
@@ -440,7 +500,9 @@
 							</div>
 						</article>
 						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="backpack,boots,trekking-poles,thermos,headlamp">
-							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірська стежка на полонині Боржава" loading="lazy">
+							<a data-fancybox="routes" data-caption="Боржава: Пилипець — гора Гимба" href="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=1800&amp;q=90" aria-label="Збільшити фото маршруту Боржава">
+								<img class="aspect-[16/9] w-full object-cover transition duration-300 hover:scale-[1.03]" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірська стежка на полонині Боржава" loading="lazy">
+							</a>
 							<div class="p-6">
 								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для активного дня в горах</p>
 								<h3 class="text-xl font-bold text-[#20372e]">Боржава: Пилипець — гора Гимба</h3>
@@ -458,7 +520,9 @@
 							</div>
 						</article>
 						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="backpack,tent,sleeping-bag,mat,stove,boots,headlamp">
-							<img class="aspect-[16/9] w-full object-cover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гори та долина біля маршруту на Петрос" loading="lazy">
+							<a data-fancybox="routes" data-caption="Петрос із Козьмещика" href="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1800&amp;q=90" aria-label="Збільшити фото маршруту Петрос">
+								<img class="aspect-[16/9] w-full object-cover transition duration-300 hover:scale-[1.03]" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гори та долина біля маршруту на Петрос" loading="lazy">
+							</a>
 							<div class="p-6">
 								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для досвідчених мандрівників</p>
 								<h3 class="text-xl font-bold text-[#20372e]">Петрос із Козьмещика</h3>
@@ -467,7 +531,27 @@
 									<div><dt class="text-xs text-[#737c73]">Тривалість</dt><dd class="mt-1 font-semibold text-[#20372e]">1–2 дні</dd></div>
 									<div><dt class="text-xs text-[#737c73]">Складність</dt><dd class="mt-1 font-semibold text-[#20372e]">Висока</dd></div>
 								</dl>
-								<p class="mt-4 text-sm leading-6 text-[#59665d]">Підйом на вершину Петрос лісовими стежками та крутішими відкритими схилами. Для ночівлі в горах знадобиться повний комплект спорядження.</p>
+								<p class="mt-4 text-sm leading-6 text-[#59665d]">Підйом на вершину Петрос лісовими стежками та крутішими відкритими схилами із ночівлею в горах.</p>
+								<button class="route-recommend-button mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" type="button" aria-expanded="false">Підібрати спорядження</button>
+								<div class="route-recommendations" hidden>
+									<h4>Рекомендоване спорядження</h4>
+									<ul></ul>
+								</div>
+							</div>
+						</article>
+						<article class="route-card overflow-hidden rounded-lg border border-[#dfe5da] bg-white shadow-sm" data-recommendations="tent,sleeping-bag,mat,backpack,thermos,headlamp">
+							<a data-fancybox="routes" data-caption="Дземброня — водоспади та полонини" href="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&amp;fit=crop&amp;w=1800&amp;q=90" aria-label="Збільшити фото маршруту Дземброня">
+								<img class="aspect-[16/9] w-full object-cover transition duration-300 hover:scale-[1.03]" src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Гірські полонини та водоспади в Карпатах" loading="lazy">
+							</a>
+							<div class="p-6">
+								<p class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#315f48]">Для сімейного походу</p>
+								<h3 class="text-xl font-bold text-[#20372e]">Дземброня: водоспади й полонини</h3>
+								<dl class="mt-4 grid grid-cols-3 gap-3 border-y border-[#e5e7df] py-4 text-sm">
+									<div><dt class="text-xs text-[#737c73]">Дистанція</dt><dd class="mt-1 font-semibold text-[#20372e]">~14 км</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Тривалість</dt><dd class="mt-1 font-semibold text-[#20372e]">2 дні</dd></div>
+									<div><dt class="text-xs text-[#737c73]">Складність</dt><dd class="mt-1 font-semibold text-[#20372e]">Середня</dd></div>
+								</dl>
+								<p class="mt-4 text-sm leading-6 text-[#59665d]">Маршрут через мальовничі водоспади й широкі полонини Верховинщини з комфортною нічною стоянкою.</p>
 								<button class="route-recommend-button mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-[#203c31] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#315f48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31]" type="button" aria-expanded="false">Підібрати спорядження</button>
 								<div class="route-recommendations" hidden>
 									<h4>Рекомендоване спорядження</h4>
@@ -537,13 +621,56 @@
 					<div class="section-heading heading-row">
 						<div><div class="eyebrow">Історії з маршрутів</div><h2 id="reviews-title">Що кажуть після походу</h2></div>
 					</div>
-					<div class="reviews-grid">
-						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Зібралися в Карпати за два дні. Калькулятор підказав усе потрібне, а намет виявився легшим, ніж я очікувала.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Ірина Коваль</strong><small>Похід на Петрос · серпень 2025</small></span></div></article>
-						<article class="review-card review-card-accent"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Нічого не довелося докуповувати. Все чисте, справне, а команда пояснила, як правильно встановити пальник.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Максим Левченко</strong><small>Похід Свидовцем · липень 2025</small></span></div></article>
-						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Дуже зручно для першого походу: не треба купувати спорядження навмання. Повернемося перед наступним маршрутом.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Наталя Савчук</strong><small>Вікенд у Ґорґанах · червень 2025</small></span></div></article>
-						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Їздили з дітьми на кілька днів. Нам допомогли підібрати зручний набір для всієї родини, а видача й повернення пройшли швидко.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Олена Петренко</strong><small>Сімейний похід · вересень 2025</small></span></div></article>
-						<article class="review-card review-card-accent"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Брав рюкзак і палиці на соло-маршрут. Спорядження було в гарному стані, а поради команди допомогли зібратися без зайвого.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Андрій Данилюк</strong><small>Маршрут Чорногорою · серпень 2025</small></span></div></article>
-						<article class="review-card"><div class="review-stars" aria-label="5 зірок">★★★★★</div><p>«Зручно, що вартість видно заздалегідь. Забронювали комплект онлайн, забрали вчасно й одразу вирушили в дорогу.»</p><div class="review-author"><img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="" loading="lazy"><span><strong>Тарас Мельник</strong><small>Похід вихідного дня · жовтень 2025</small></span></div></article>
+					<div class="relative">
+						<div class="swiper reviews-swiper" aria-label="Відгуки клієнтів" aria-roledescription="карусель">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide h-auto">
+									<article class="flex h-full min-h-64 flex-col rounded-xl border border-[#e5e7df] bg-white p-6 shadow-sm">
+										<div class="mb-4 text-sm tracking-[0.2em] text-[#d9a746]" aria-label="Рейтинг 5 зірок">★★★★★</div>
+										<p class="mb-6 flex-1 text-sm leading-7 text-[#59665d]">«Зібралися в Карпати за два дні. Калькулятор підказав усе потрібне, а намет виявився легшим, ніж я очікувала.»</p>
+										<div class="flex items-center gap-3"><img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="Ірина Коваль" loading="lazy"><span><strong class="block text-sm text-[#20372e]">Ірина Коваль</strong><small class="mt-1 block text-xs text-[#899188]">Похід на Петрос · серпень 2025</small></span></div>
+									</article>
+								</div>
+								<div class="swiper-slide h-auto">
+									<article class="flex h-full min-h-64 flex-col rounded-xl border border-[#e5e7df] bg-[#f7f4e9] p-6 shadow-sm">
+										<div class="mb-4 text-sm tracking-[0.2em] text-[#d9a746]" aria-label="Рейтинг 5 зірок">★★★★★</div>
+										<p class="mb-6 flex-1 text-sm leading-7 text-[#59665d]">«Нічого не довелося докуповувати. Все чисте, справне, а команда пояснила, як правильно встановити пальник.»</p>
+										<div class="flex items-center gap-3"><img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="Максим Левченко" loading="lazy"><span><strong class="block text-sm text-[#20372e]">Максим Левченко</strong><small class="mt-1 block text-xs text-[#899188]">Похід Свидовцем · липень 2025</small></span></div>
+									</article>
+								</div>
+								<div class="swiper-slide h-auto">
+									<article class="flex h-full min-h-64 flex-col rounded-xl border border-[#e5e7df] bg-white p-6 shadow-sm">
+										<div class="mb-4 text-sm tracking-[0.2em] text-[#d9a746]" aria-label="Рейтинг 5 зірок">★★★★★</div>
+										<p class="mb-6 flex-1 text-sm leading-7 text-[#59665d]">«Дуже зручно для першого походу: не треба купувати спорядження навмання. Повернемося перед наступним маршрутом.»</p>
+										<div class="flex items-center gap-3"><img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="Наталя Савчук" loading="lazy"><span><strong class="block text-sm text-[#20372e]">Наталя Савчук</strong><small class="mt-1 block text-xs text-[#899188]">Вікенд у Ґорґанах · червень 2025</small></span></div>
+									</article>
+								</div>
+								<div class="swiper-slide h-auto">
+									<article class="flex h-full min-h-64 flex-col rounded-xl border border-[#e5e7df] bg-white p-6 shadow-sm">
+										<div class="mb-4 text-sm tracking-[0.2em] text-[#d9a746]" aria-label="Рейтинг 5 зірок">★★★★★</div>
+										<p class="mb-6 flex-1 text-sm leading-7 text-[#59665d]">«Їздили з дітьми на кілька днів. Нам допомогли підібрати зручний набір для всієї родини, а видача й повернення пройшли швидко.»</p>
+										<div class="flex items-center gap-3"><img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="Олена Петренко" loading="lazy"><span><strong class="block text-sm text-[#20372e]">Олена Петренко</strong><small class="mt-1 block text-xs text-[#899188]">Сімейний похід · вересень 2025</small></span></div>
+									</article>
+								</div>
+								<div class="swiper-slide h-auto">
+									<article class="flex h-full min-h-64 flex-col rounded-xl border border-[#e5e7df] bg-[#f7f4e9] p-6 shadow-sm">
+										<div class="mb-4 text-sm tracking-[0.2em] text-[#d9a746]" aria-label="Рейтинг 5 зірок">★★★★★</div>
+										<p class="mb-6 flex-1 text-sm leading-7 text-[#59665d]">«Брав рюкзак і палиці на соло-маршрут. Спорядження було в гарному стані, а поради команди допомогли зібратися без зайвого.»</p>
+										<div class="flex items-center gap-3"><img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="Андрій Данилюк" loading="lazy"><span><strong class="block text-sm text-[#20372e]">Андрій Данилюк</strong><small class="mt-1 block text-xs text-[#899188]">Маршрут Чорногорою · серпень 2025</small></span></div>
+									</article>
+								</div>
+								<div class="swiper-slide h-auto">
+									<article class="flex h-full min-h-64 flex-col rounded-xl border border-[#e5e7df] bg-white p-6 shadow-sm">
+										<div class="mb-4 text-sm tracking-[0.2em] text-[#d9a746]" aria-label="Рейтинг 5 зірок">★★★★★</div>
+										<p class="mb-6 flex-1 text-sm leading-7 text-[#59665d]">«Зручно, що вартість видно заздалегідь. Забронювали комплект онлайн, забрали вчасно й одразу вирушили в дорогу.»</p>
+										<div class="flex items-center gap-3"><img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80" alt="Тарас Мельник" loading="lazy"><span><strong class="block text-sm text-[#20372e]">Тарас Мельник</strong><small class="mt-1 block text-xs text-[#899188]">Похід вихідного дня · жовтень 2025</small></span></div>
+									</article>
+								</div>
+							</div>
+						</div>
+						<button class="reviews-button-prev absolute left-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#dfe3da] bg-white text-xl text-[#203c31] shadow-md transition hover:bg-[#203c31] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31] lg:-left-14 lg:flex" type="button" aria-label="Попередній відгук">←</button>
+						<button class="reviews-button-next absolute right-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#dfe3da] bg-white text-xl text-[#203c31] shadow-md transition hover:bg-[#203c31] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203c31] lg:-right-14 lg:flex" type="button" aria-label="Наступний відгук">→</button>
+						<div class="reviews-pagination mt-6 flex justify-center"></div>
 					</div>
 				</div>
 			</section>
@@ -552,7 +679,11 @@
 				<div class="content-container consultation-layout">
 					<div class="consultation-copy"><div class="eyebrow eyebrow-light">Зворотний зв'язок</div><h2 id="consultation-title">Є запитання? Напишіть нам</h2><p>Залиште повідомлення — допоможемо підібрати спорядження та спланувати оренду.</p></div>
 					<div class="consultation-form-panel">
-						<form action="#" method="get" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+						<form action="https://formsubmit.co/dimagainevich@gmail.com" method="post" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+							<input type="hidden" name="_subject" value="Нове повідомлення з сайту ТурПрокат">
+							<input type="hidden" name="_template" value="table">
+							<input type="hidden" name="_captcha" value="true">
+							<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 							<div class="field-group">
 								<label for="contact-name">Ім’я</label>
 								<input id="contact-name" name="name" type="text" autocomplete="name" aria-describedby="contact-name-error" required>
@@ -581,6 +712,7 @@
 								<p id="privacy-consent-error" class="form-error" role="alert" hidden>Потрібно надати згоду на обробку даних.</p>
 							</div>
 							<button class="button button-primary contact-submit sm:col-span-2" type="submit">Надіслати</button>
+							<p id="contact-submit-error" class="form-error field-full" role="alert" hidden>Не вдалося надіслати повідомлення. Спробуйте ще раз або напишіть на hello@turprokat.ua.</p>
 						</form>
 						<figure class="contact-map-card" aria-labelledby="contact-map-title">
 							<figcaption id="contact-map-title" class="sr-only">Мапа розташування офісу ТурПрокат</figcaption>
@@ -614,6 +746,7 @@
 					const successDialog = document.querySelector("#contact-success-dialog");
 					const closeDialogButton = successDialog.querySelector("#close-success-dialog");
 					const submitButton = form.querySelector('[type="submit"]');
+					const submitError = form.querySelector("#contact-submit-error");
 
 					phone.addEventListener("focus", () => {
 						if (!phone.value) {
@@ -642,14 +775,46 @@
 						}
 					});
 
-					form.addEventListener("submit", (event) => {
+					form.addEventListener("submit", async (event) => {
 						event.preventDefault();
 						if (!form.reportValidity()) return;
 
-						form.reset();
-						phoneError.hidden = true;
-						phone.removeAttribute("aria-invalid");
-						successDialog.showModal();
+						submitError.hidden = true;
+						submitButton.disabled = true;
+						submitButton.textContent = "Надсилання...";
+
+						try {
+							const controller = new AbortController();
+							const timeoutId = window.setTimeout(() => controller.abort(), 10000);
+							const response = await fetch("https://formsubmit.co/ajax/dimagainevich@gmail.com", {
+								method: "POST",
+								headers: {
+									Accept: "application/json"
+								},
+								body: new FormData(form),
+								signal: controller.signal
+							});
+							window.clearTimeout(timeoutId);
+
+							if (!response.ok) {
+								throw new Error(`Form submission failed with status ${response.status}`);
+							}
+
+							form.reset();
+							phoneError.hidden = true;
+							phone.removeAttribute("aria-invalid");
+							successDialog.showModal();
+						} catch (error) {
+							console.error("Contact form submission failed:", error);
+							submitButton.disabled = false;
+							submitButton.textContent = "Надіслати";
+							form.submit();
+						} finally {
+							if (!submitButton.disabled) {
+								submitButton.disabled = false;
+								submitButton.textContent = "Надіслати";
+							}
+						}
 					});
 
 					closeDialogButton.addEventListener("click", () => successDialog.close());
@@ -711,5 +876,55 @@
 			</div>
 		</div>
 	</footer>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			new Swiper(".reviews-swiper", {
+				slidesPerView: 1,
+				spaceBetween: 16,
+				watchOverflow: true,
+				autoHeight: false,
+				a11y: {
+					enabled: true,
+					prevSlideMessage: "Попередній відгук",
+					nextSlideMessage: "Наступний відгук"
+				},
+				navigation: {
+					prevEl: ".reviews-button-prev",
+					nextEl: ".reviews-button-next"
+				},
+				pagination: {
+					el: ".reviews-pagination",
+					clickable: true
+				},
+				breakpoints: {
+					640: {
+						slidesPerView: 2
+					},
+					1024: {
+						slidesPerView: 3
+					}
+				}
+			});
+
+			Fancybox.bind('[data-fancybox="routes"]', {
+				animated: true,
+				showClass: "f-fadeIn",
+				hideClass: "f-fadeOut",
+				zoomEffect: true,
+				zoomOpacity: "auto",
+				dragToClose: true,
+				Toolbar: {
+					display: {
+						left: ["infobar"],
+						middle: [],
+						right: ["zoom", "slideshow", "fullscreen", "close"]
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>
